@@ -21,4 +21,8 @@ public class QuestionService {
     public List<Questions> getAllQuestions() {
         return questionRepository.findAll();
     }
+
+    public void deleteQuestion(Long id) {
+        questionRepository.deleteById(id);
+    }
 }

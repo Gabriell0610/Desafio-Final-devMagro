@@ -27,8 +27,8 @@ public class QuestionsController {
     }
 
     @GetMapping
-    public List<Questions> getQuestions() {
-        return questionService.getAllQuestions();
+    public ResponseEntity<List<Questions>> getQuestions() {
+       return ResponseEntity.status(HttpStatus.OK).body(questionService.getAllQuestions());
     }
 
 }
