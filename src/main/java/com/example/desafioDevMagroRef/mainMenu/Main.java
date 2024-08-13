@@ -37,6 +37,7 @@ public class Main {
                         3 - Cadastrar nova pergunta no formulário
                         4 - Deletar pergunta do formulário
                         5 - Pesquisar usuário por nome ou idade ou email
+                        6 - Remover Usuário
                         0 - sair\n""");
 
             opcao = scanner.nextInt();
@@ -57,6 +58,9 @@ public class Main {
                     break;
                 case 5:
                     searchUser();
+                    break;
+                case 6:
+                    removeUser();
                     break;
                 case 0:
                     System.out.println("saindo...");
@@ -166,6 +170,23 @@ public class Main {
                         String.valueOf(u.getAge()).contains(excerpt)) // Adicionando a verificação da idade
                 .forEach(u -> System.out.println(u + "\n"));
         System.out.println("*************");
+
+    }
+
+    private void removeUser() {
+       try {
+           System.out.println("usuários cadastrados");
+           listarUsuarios();
+           System.out.println("Digite o número do usuário que você queira deletar");
+           var index = scanner.nextInt();
+           scanner.nextLine();
+
+           User foundUser = users.get(index - 1);
+           userService.removeUser(String.valueOf(foundUser.getId()));
+           System.out.println("Usuário removido com sucesso");
+       }catch (RuntimeException e ) {
+           System.out.println(e.getMessage());
+       }
 
     }
 }

@@ -1,12 +1,10 @@
 package com.example.desafioDevMagroRef.Controller;
 
-import com.example.desafioDevMagroRef.Respositories.UserRepository;
 import com.example.desafioDevMagroRef.dto.UserDTO;
 import com.example.desafioDevMagroRef.model.User;
 import com.example.desafioDevMagroRef.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +29,11 @@ public class UserController {
     public ResponseEntity<List<User>> getUsers() {
         userService.getAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
+        userService.removeUser(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
